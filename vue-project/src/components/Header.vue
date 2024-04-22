@@ -13,8 +13,8 @@
       </div>
       <div class="right-nav">
         <ul>
-          <li v-if="!isLoggedIn"><router-link to="/register">Регистрация</router-link></li>
-          <li v-if="!isLoggedIn"><router-link to="/login">Вход</router-link></li>
+          <li v-if="!isLoggedIn && hasLocalStorageUser"><router-link to="/register">Регистрация</router-link></li>
+          <li v-if="!isLoggedIn && hasLocalStorageUser"><router-link to="/login">Вход</router-link></li>
           <li v-if="isLoggedIn"><router-link to="/profile">Личный кабинет</router-link></li>
           <li v-if="isLoggedIn"><button @click="logout">Выход</button></li>
         </ul>
@@ -29,16 +29,17 @@ export default {
   data() {
     return {
       isLoggedIn: false,
+      hasLocalStorageUser: false,
     };
   },
   mounted() {
-    // Проверка, авторизован ли пользователь
     this.checkAuthentication();
   },
   methods: {
     checkAuthentication() {
       const user = JSON.parse(localStorage.getItem('user'));
-      this.isLoggedIn = !!user;
+      this.hasLocalStorageUser = !!user;
+      this.isLoggedIn = this.hasLocalStorageUser; // или дополнительная проверка на сервере, если у вас таковая
     },
     logout() {
       localStorage.removeItem('user');
