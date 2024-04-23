@@ -1,24 +1,21 @@
 <template>
   <header>
     <nav>
-      <div class="logo">
-        <b>Домовой</b>
-      </div>
-      <div class="center-nav">
-        <ul>
-          <li><router-link to="/">Главная</router-link></li>
-          <li><router-link to="/about">О нас</router-link></li>
-          <li><router-link to="/contact">Контакты</router-link></li>
-        </ul>
-      </div>
-      <div class="right-nav">
-        <ul>
-          <li v-if="!isLoggedIn && hasLocalStorageUser"><router-link to="/register">Регистрация</router-link></li>
-          <li v-if="!isLoggedIn && hasLocalStorageUser"><router-link to="/login">Вход</router-link></li>
-          <li v-if="isLoggedIn"><router-link to="/profile">Личный кабинет</router-link></li>
-          <li v-if="isLoggedIn"><button @click="logout">Выход</button></li>
-        </ul>
-      </div>
+        <div class="logo">
+          <b>Домовой</b>
+        </div>
+        <div class="center-nav">
+          <ul>
+            <li><a href="#">Главная</a></li>
+            <li><a href="#">О нас</a></li>
+            <li><a href="#">Контакты</a></li>
+          </ul>
+        </div>
+        <div class="auth-reg">
+          <ul>
+            <li><router-link to="/auth">Авторизация</router-link></li>
+          </ul>
+        </div>
     </nav>
   </header>
 </template>
@@ -52,39 +49,70 @@ export default {
 
 <style>
 header {
-  background-color: #000000;
-  color: white;
-  padding: 1em;
+  background-color: #333;
+  color: #fff;
+  padding: 20px 0;
 }
+
 
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-.logo b {
-  margin: 0;
-  padding: 0;
+
+.logo {
   font-size: 1.5em;
 }
 
-.center-nav {
-  flex-grow: 1;
-  text-align: center;
+.logo b {
+  color: #ff6b6b;
 }
 
-nav ul {
+
+.center-nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.center-nav li {
+  margin: 0 10px;
+}
+
+.center-nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+
+.auth-reg ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
-nav ul li {
-  display: inline;
-  margin-right: 20px;
+.auth-reg a {
+  color: #fff;
+  text-decoration: none;
 }
 
+
+router-link {
+  color: #fff;
+  text-decoration: none;
+
+}
+
+nav ul li a:hover,
+nav ul li button:hover {
+  color: #ff6b6b;
+}
 nav ul li a,
 nav ul li button {
   color: white;
@@ -95,8 +123,17 @@ nav ul li button {
   cursor: pointer;
 }
 
-nav ul li a:hover,
-nav ul li button:hover {
-  color: #FFC107;
+
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+  }
+
+  .center-nav ul,
+  .auth-reg ul {
+    margin-top: 10px;
+  }
 }
+
+
 </style>
