@@ -6,9 +6,9 @@
         </div>
         <div class="center-nav">
           <ul>
-            <li><a href="#">Главная</a></li>
-            <li><a href="#">О нас</a></li>
-            <li><a href="#">Контакты</a></li>
+            <li><a href=""><router-link to="/">Главная</router-link></a></li>
+            <li><a href="#"><router-link to="/">О нас</router-link></a></li>
+            <li><a href="#"><router-link to="/">Контакты</router-link></a></li>
           </ul>
         </div>
         <div class="auth-reg">
@@ -59,7 +59,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 0 20px;
 }
